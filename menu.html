@@ -8,6 +8,7 @@
 <title>Menu | Ishmam's Pizzaria</title>
 
 <link rel="stylesheet" href="css/style.css">
+<script src="js/script.js"></script>
 </head>
 
 <body>
@@ -24,6 +25,7 @@
 <a href="menu.html">Menu</a>
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
+<a href="cart.html" class="cart-link">Your Cart</a>
 </nav>
 
 <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -43,24 +45,28 @@
 <img src="images/pizza1.jpg" alt="Margherita Pizza">
 <h3>Margherita Pizza</h3>
 <p class="price">$12</p>
+<button class="add-to-cart-btn" onclick="addToCart('Margherita Pizza', 12)">Add to Cart</button>
 </div>
 
 <div class="menu-card">
 <img src="images/pizza2.jpg" alt="Pepperoni Pizza">
 <h3>Pepperoni Pizza</h3>
 <p class="price">$14</p>
+<button class="add-to-cart-btn" onclick="addToCart('Pepperoni Pizza', 14)">Add to Cart</button>
 </div>
 
 <div class="menu-card">
 <img src="images/pizza3.jpg" alt="BBQ Chicken Pizza">
 <h3>BBQ Chicken Pizza</h3>
 <p class="price">$15</p>
+<button class="add-to-cart-btn" onclick="addToCart('BBQ Chicken Pizza', 15)">Add to Cart</button>
 </div>
 
 <div class="menu-card">
 <img src="images/pizza4.jpg" alt="Veggie Pizza">
 <h3>Veggie Pizza</h3>
 <p class="price">$13</p>
+<button class="add-to-cart-btn" onclick="addToCart('Veggie Pizza', 13)">Add to Cart</button>
 </div>
 
 </div>
