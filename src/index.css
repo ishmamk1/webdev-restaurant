@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+}
+
+.hero-section {
+  background-color: #f8f8f8;
+  min-height: 400px;
+}
+
+.btn-danger {
+  background-color: #e63946;
+  border-color: #e63946;
+}
+
+.btn-danger:hover {
+  background-color: #c92c38;
+  border-color: #c92c38;
+}
+
+.menu-card-img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.slide-img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
