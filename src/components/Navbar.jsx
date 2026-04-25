@@ -14,7 +14,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid px-4">
         <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
-          <img src="/images/logo.png" alt="Logo" height="40" />
+          <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Logo" height="40" />
           Ishmam's Pizzaria
         </Link>
 

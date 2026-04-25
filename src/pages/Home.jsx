@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+const base = import.meta.env.BASE_URL
+
 const images = [
-  '/images/pizza1.jpg',
-  '/images/pizza2.jpg',
-  '/images/pizza3.jpg',
-  '/images/pizza4.jpg',
-  '/images/pizza5.jpg',
-  '/images/pizza6.jpg',
+  `${base}images/pizza1.jpg`,
+  `${base}images/pizza2.jpg`,
+  `${base}images/pizza3.jpg`,
+  `${base}images/pizza4.jpg`,
+  `${base}images/pizza5.jpg`,
+  `${base}images/pizza6.jpg`,
 ]
 
 function Home() {
@@ -36,7 +38,7 @@ function Home() {
             </div>
             <div className="col-md-6 text-center">
               <img
-                src="/images/hero-image.jpg"
+                src={`${import.meta.env.BASE_URL}images/hero-image.jpg`}
                 alt="Pizza"
                 className="img-fluid rounded-4 shadow"
               />

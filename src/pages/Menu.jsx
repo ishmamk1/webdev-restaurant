@@ -1,10 +1,12 @@
 import { useCart } from '../CartContext'
 
+const base = import.meta.env.BASE_URL
+
 const menuItems = [
-  { name: 'Margherita Pizza', price: 12, img: '/images/pizza1.jpg' },
-  { name: 'Pepperoni Pizza', price: 14, img: '/images/pizza2.jpg' },
-  { name: 'BBQ Chicken Pizza', price: 15, img: '/images/pizza3.jpg' },
-  { name: 'Veggie Pizza', price: 13, img: '/images/pizza4.jpg' },
+  { name: 'Margherita Pizza', price: 12, img: `${base}images/pizza1.jpg` },
+  { name: 'Pepperoni Pizza', price: 14, img: `${base}images/pizza2.jpg` },
+  { name: 'BBQ Chicken Pizza', price: 15, img: `${base}images/pizza3.jpg` },
+  { name: 'Veggie Pizza', price: 13, img: `${base}images/pizza4.jpg` },
 ]
 
 function Menu() {

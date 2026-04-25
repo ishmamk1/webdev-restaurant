@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './CartContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -11,7 +11,7 @@ import Cart from './pages/Cart'
 function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <HashRouter>
         <div className="d-flex flex-column min-vh-100">
           <Navbar />
           <main className="flex-grow-1">
@@ -25,7 +25,7 @@ function App() {
           </main>
           <Footer />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </CartProvider>
   )
 }

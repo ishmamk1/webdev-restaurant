@@ -6,7 +6,7 @@ function About() {
         <div className="row align-items-center g-4">
           <div className="col-md-5">
             <img
-              src="/images/pizza1.jpg"
+              src={`${import.meta.env.BASE_URL}images/pizza1.jpg`}
               alt="Our Pizza"
               className="img-fluid rounded-4 shadow"
             />
