@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
+import { getSessionId } from './sessionId'
+import { syncCart, fetchCart, clearCartOnServer } from './api'
 
 const CartContext = createContext()
 
@@ -40,7 +42,29 @@ export function CartProvider({ children }) {
 
   function clearCart() {
     saveCart([])
+    clearCartOnServer(getSessionId()).catch(() => {})
   }
+
+  useEffect(() => {
+    const sessionId = getSessionId()
+    fetchCart(sessionId)
+      .then(serverCart => {
+        if (serverCart.items.length > 0 && cart.length === 0) {
+          setCart(serverCart.items)
+          localStorage.setItem('cart', JSON.stringify(serverCart.items))
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  const syncTimer = useRef(null)
+  useEffect(() => {
+    clearTimeout(syncTimer.current)
+    syncTimer.current = setTimeout(() => {
+      syncCart(getSessionId(), cart).catch(() => {})
+    }, 500)
+    return () => clearTimeout(syncTimer.current)
+  }, [cart])
 
   return (
     <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart }}>

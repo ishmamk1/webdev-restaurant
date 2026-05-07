@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../CartContext'
+import { placeOrder } from '../api'
+import { getSessionId } from '../sessionId'
 
 function Cart() {
   const { cart, updateQuantity, removeFromCart, clearCart } = useCart()
@@ -9,6 +11,15 @@ function Cart() {
     if (window.confirm('Are you sure you want to clear your cart?')) {
       clearCart()
     }
+  }
+
+  function handleCheckout() {
+    placeOrder(getSessionId(), cart, total)
+      .then(() => {
+        clearCart()
+        alert('Order placed! Thank you for your order.')
+      })
+      .catch(() => alert('Could not place order. Please try again.'))
   }
 
   if (cart.length === 0) {
@@ -68,6 +79,7 @@ function Cart() {
           <h4 className="mb-0">Total: ${total.toFixed(2)}</h4>
           <div className="d-flex gap-3">
             <button className="btn btn-danger" onClick={handleClear}>Clear Cart</button>
+            <button className="btn btn-success fw-bold" onClick={handleCheckout}>Place Order</button>
             <Link to="/menu" className="btn btn-dark">Continue Shopping</Link>
           </div>
         </div>

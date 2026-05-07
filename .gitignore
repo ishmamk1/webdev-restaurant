@@ -1,3 +1,10 @@
 node_modules
 dist
 .DS_Store
+
+# Backend
+server/node_modules
+server/.env
+
+# Frontend env
+.env.local

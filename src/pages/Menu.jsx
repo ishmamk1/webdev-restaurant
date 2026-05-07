@@ -1,20 +1,47 @@
+import { useState, useEffect } from 'react'
 import { useCart } from '../CartContext'
+import { fetchMenu } from '../api'
 
 const base = import.meta.env.BASE_URL
 
-const menuItems = [
-  { name: 'Margherita Pizza', price: 12, img: `${base}images/pizza1.jpg` },
-  { name: 'Pepperoni Pizza', price: 14, img: `${base}images/pizza2.jpg` },
-  { name: 'BBQ Chicken Pizza', price: 15, img: `${base}images/pizza3.jpg` },
-  { name: 'Veggie Pizza', price: 13, img: `${base}images/pizza4.jpg` },
-]
-
 function Menu() {
   const { addToCart } = useCart()
+  const [menuItems, setMenuItems] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    fetchMenu()
+      .then(items => setMenuItems(items))
+      .catch(() => setError('Could not load menu. Please try again later.'))
+      .finally(() => setLoading(false))
+  }, [])
 
   function handleAdd(name, price) {
     addToCart(name, price)
     alert(name + ' added to cart!')
+  }
+
+  if (loading) {
+    return (
+      <section className="py-5 text-center">
+        <div className="container">
+          <h1 className="mb-4">Our Pizza Menu</h1>
+          <p className="text-muted fs-5">Loading menu...</p>
+        </div>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className="py-5 text-center">
+        <div className="container">
+          <h1 className="mb-4">Our Pizza Menu</h1>
+          <p className="text-danger fs-5">{error}</p>
+        </div>
+      </section>
+    )
   }
 
   return (
@@ -23,10 +50,10 @@ function Menu() {
         <h1 className="text-center mb-5">Our Pizza Menu</h1>
         <div className="row g-4">
           {menuItems.map(item => (
-            <div className="col-sm-6 col-lg-3" key={item.name}>
+            <div className="col-sm-6 col-lg-3" key={item._id}>
               <div className="card h-100 shadow-sm">
                 <img
-                  src={item.img}
+                  src={`${base}${item.imgPath}`}
                   className="card-img-top menu-card-img"
                   alt={item.name}
                 />
